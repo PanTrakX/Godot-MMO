@@ -15,6 +15,8 @@ extends Node3D
 @export var character_name_line_edit: LineEdit
 @export var create_character_button: Button
 
+@export var join_button: Button
+
 @export var animation_player: AnimationPlayer
 
 var player_characters = {}
@@ -33,8 +35,10 @@ func _asserts() -> void:
 	assert(!(create_character_popup_panel == null))
 	assert(!(character_name_line_edit == null))
 	assert(!(create_character_button == null))
+
+	assert(!(create_character_button == null))
 	
-	assert(!(animation_player == null))
+	assert(!(join_button == null))
 	return
 
 
@@ -132,3 +136,18 @@ func _on_characters_item_list_item_selected(index: int) -> void:
 	$MeshInstance3D3.visible = true
 	$UITabContainer/CharacterMenu/JoinButton.disabled = false
 	return
+
+
+func _on_join_button_pressed() -> void:
+	self.join_button.disabled = true
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	var headers = ["Authorization: Token " + c_globals.auth_token]
+	var error = http_request.request("http://127.0.0.1:8000/api/matchmaking/get_game_server_instance/")
+	if error != OK:
+		push_error("An error occurred in the HTTP request.")
+	var response = await http_request.request_completed
+	var status_code: int = response[1]
+	if status_code == 200:
+		print(response[3].get_string_from_utf8())
+		### After here we can connect to a game server with the provided ip:port from the matchmaking

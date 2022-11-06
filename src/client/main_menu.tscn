@@ -103,7 +103,7 @@ _data = {
 "RESET": SubResource("Animation_icut0")
 }
 
-[node name="MainMenu" type="Node3D" node_paths=PackedStringArray("ui_tab_container", "username_linedit", "password_linedit", "login_button", "error_label", "characters_itemlist", "create_character_popup_panel", "character_name_line_edit", "create_character_button", "animation_player")]
+[node name="MainMenu" type="Node3D" node_paths=PackedStringArray("ui_tab_container", "username_linedit", "password_linedit", "login_button", "error_label", "characters_itemlist", "create_character_popup_panel", "character_name_line_edit", "create_character_button", "join_button", "animation_player")]
 script = ExtResource("1_0bsjk")
 ui_tab_container = NodePath("UITabContainer")
 username_linedit = NodePath("UITabContainer/AuthMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/UsernameLineEdit")
@@ -114,6 +114,7 @@ characters_itemlist = NodePath("UITabContainer/CharacterMenu/PanelContainer/Marg
 create_character_popup_panel = NodePath("UITabContainer/CharacterMenu/CreateCharacterPopupPanel")
 character_name_line_edit = NodePath("UITabContainer/CharacterMenu/CreateCharacterPopupPanel/MarginContainer/VBoxContainer/CharacterNameLineEdit")
 create_character_button = NodePath("UITabContainer/CharacterMenu/CreateCharacterPopupPanel/MarginContainer/VBoxContainer/CreateCharacterButton")
+join_button = NodePath("UITabContainer/CharacterMenu/JoinButton")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -225,6 +226,7 @@ offset_right = 200.0
 offset_bottom = 146.0
 
 [node name="CharacterMenu" type="Control" parent="UITabContainer"]
+visible = false
 layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,3 +335,4 @@ libraries = {
 [connection signal="item_selected" from="UITabContainer/CharacterMenu/PanelContainer/MarginContainer/VBoxContainer/CharactersItemList" to="." method="_on_characters_item_list_item_selected"]
 [connection signal="pressed" from="UITabContainer/CharacterMenu/PanelContainer/MarginContainer/VBoxContainer/NewCharacterButton" to="." method="_on_new_character_button_pressed"]
 [connection signal="pressed" from="UITabContainer/CharacterMenu/CreateCharacterPopupPanel/MarginContainer/VBoxContainer/CreateCharacterButton" to="." method="_on_create_character_button_pressed"]
+[connection signal="pressed" from="UITabContainer/CharacterMenu/JoinButton" to="." method="_on_join_button_pressed"]
