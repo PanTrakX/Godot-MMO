@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+_global_script_classes=[{
+"base": "Node",
+"class": &"C_Globals",
+"language": &"GDScript",
+"path": "res://src/client/c_globals.gd"
+}]
+_global_script_class_icons={
+"C_Globals": ""
+}
+
+[application]
+
+config/name="mmo"
+run/main_scene="res://src/main.tscn"
+config/features=PackedStringArray("4.0", "Mobile")
+config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
+
+[rendering]
+
+renderer/rendering_method="mobile"

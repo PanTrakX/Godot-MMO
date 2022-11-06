@@ -1,0 +1,6 @@
+res://src/main.tscn
+res://src/client/main_menu.tscn
+res://src/client/main_menu.gd
+res://src/main.gd
+res://src/client/c_globals.tscn
+res://src/client/c_globals.gd
