@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8gj1ufoifvgg"]
+
+[ext_resource type="Script" path="res://src/server/s_network.gd" id="1_yetmu"]
+
+[node name="S_Network" type="Node"]
+script = ExtResource("1_yetmu")

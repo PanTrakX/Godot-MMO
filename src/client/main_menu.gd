@@ -2,6 +2,7 @@ extends Node3D
 
 
 @onready var c_globals: C_Globals = get_node("/root/C_Globals")
+@onready var c_network: C_Network = get_node("/root/C_Network")
 
 @export var ui_tab_container: TabContainer
 @export var username_linedit: LineEdit
@@ -23,6 +24,7 @@ var player_characters = {}
 
 func _asserts() -> void:
 	assert(!(c_globals == null))
+	assert(!(c_network == null))
 
 	assert(!(ui_tab_container == null))
 	assert(!(username_linedit == null))
@@ -148,6 +150,7 @@ func _on_join_button_pressed() -> void:
 		push_error("An error occurred in the HTTP request.")
 	var response = await http_request.request_completed
 	var status_code: int = response[1]
+	self.c_network.connect_to_server("127.0.0.1", 9090)
 	if status_code == 200:
 		print(response[3].get_string_from_utf8())
 		### After here we can connect to a game server with the provided ip:port from the matchmaking

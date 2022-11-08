@@ -13,9 +13,15 @@ _global_script_classes=[{
 "class": &"C_Globals",
 "language": &"GDScript",
 "path": "res://src/client/c_globals.gd"
+}, {
+"base": "Node",
+"class": &"C_Network",
+"language": &"GDScript",
+"path": "res://src/client/c_network.gd"
 }]
 _global_script_class_icons={
-"C_Globals": ""
+"C_Globals": "",
+"C_Network": ""
 }
 
 [application]
