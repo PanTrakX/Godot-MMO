@@ -150,7 +150,8 @@ func _on_join_button_pressed() -> void:
 		push_error("An error occurred in the HTTP request.")
 	var response = await http_request.request_completed
 	var status_code: int = response[1]
-	self.c_network.connect_to_server("127.0.0.1", 9090)
 	if status_code == 200:
-		print(response[3].get_string_from_utf8())
-		### After here we can connect to a game server with the provided ip:port from the matchmaking
+		var json := JSON.new()
+		json.parse(response[3].get_string_from_utf8())
+		var body = json.get_data()
+		self.c_network.connect_to_server(body["ip"], body["port"])

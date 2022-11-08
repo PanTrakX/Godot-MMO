@@ -19,6 +19,7 @@ func client_main() -> void:
 
 func server_main() -> void:
 	register_singleton("res://src/server/s_network.tscn")
+	get_tree().change_scene_to_file("res://src/map.tscn")
 	pass
 
 

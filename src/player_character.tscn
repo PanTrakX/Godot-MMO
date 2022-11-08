@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://dytk1snxsnnk3"]
+
+[ext_resource type="Script" path="res://src/player_character.gd" id="1_gd44u"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ui37c"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_quscd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oc1oa"]
+
+[node name="PlayerCharacter" type="CharacterBody3D"]
+script = ExtResource("1_gd44u")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ui37c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_quscd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_oc1oa")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+unique_name_in_owner = true
+fov = 105.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/CenterContainer"]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 2
+offset_left = 575.0
+offset_top = 323.0
+offset_right = 577.0
+offset_bottom = 325.0
+mouse_filter = 2
